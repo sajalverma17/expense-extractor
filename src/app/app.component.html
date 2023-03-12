@@ -1,4 +1,4 @@
-<div class="section" role="main">
+<div class="root-section" role="main">
 
   <!-- Toolbar -->
   <div class="toolbar" role="banner">
@@ -33,9 +33,7 @@
         </g>
       </g>
     </svg>
-
-    <span>{{ title }} is running!</span>
-
+    <span>{{ name }} is running!</span>
   </div>
 
   <!-- Main button -->
@@ -50,17 +48,13 @@
 
   </div>
 
-  <!-- Keywords -->
   <keywords></keywords>
 
-  <!-- Result -->
-  <div class="terminal">
-    <pre>Click the Extract button to get your expenses</pre>
-  </div>
+  <result></result>
 
-  <!-- Footer -->
-  <footer>
-  </footer>
+  <!-- Not in use -->
+  <footer></footer>
+
 </div>
 
 <router-outlet></router-outlet>

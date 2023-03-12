@@ -23,13 +23,13 @@ describe('AppComponent', () => {
   it(`should have title 'expense extractor'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('expense extractor');
+    expect(app.name).toEqual('expense extractor');
   });
 
   it(`should render title 'expense extractor'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('expense-extractor app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('expense extractor app is running!');
   });
 });
