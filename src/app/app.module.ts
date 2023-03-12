@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { KeywordsComponent } from './keywords/keywords.component';
 import { ResultComponent } from './result/result.component';
 import { ExtractComponent } from './extract/extract.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ExtractComponent } from './extract/extract.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

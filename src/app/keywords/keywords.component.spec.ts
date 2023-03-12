@@ -4,6 +4,8 @@ import { KeywordsComponent } from './keywords.component';
 
 describe('KeywordsComponent', () => {
   let fixture: ComponentFixture<KeywordsComponent>;
+  const testKeyword1 = { id: "bob-lawbla", AddClass: "visible", AddedClass: "invisible" }
+  const testKeyword2 = { id: "mr.f", AddClass: "visible", AddedClass: "invisible" }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -21,21 +23,27 @@ describe('KeywordsComponent', () => {
   });
 
   it('toggle should add keywords', () => {
-    fixture.componentInstance.toggle({ id: "bob-lawbla", AddClass: "visible", AddedClass: "invisible" })
-    expect(fixture.componentInstance.get()).toHaveSize(1)
 
-    fixture.componentInstance.toggle({ id: "mr.f", AddClass: "visible", AddedClass: "invisible" })
-    expect(fixture.componentInstance.get()).toHaveSize(2)
+    spyOn(fixture.componentInstance.onKeywordsChange, 'emit')
+    fixture.detectChanges()
+
+    fixture.componentInstance.toggle(testKeyword1)
+    expect(fixture.componentInstance.onKeywordsChange.emit).toHaveBeenCalledOnceWith( [ testKeyword1 ])
+
+    fixture.componentInstance.toggle(testKeyword2)
+    expect(fixture.componentInstance.onKeywordsChange.emit).toHaveBeenCalledWith([ testKeyword1, testKeyword2 ])
   })
 
   it('toggle should remove keywords', () => {
-    expect(fixture.componentInstance.get()).toHaveSize(0)
 
-    fixture.componentInstance.toggle({ id: "tobais", AddClass: "visible", AddedClass: "invisible" })
-    expect(fixture.componentInstance.get()).toHaveSize(1)
+    spyOn(fixture.componentInstance.onKeywordsChange, 'emit')
+    fixture.detectChanges()
 
-    fixture.componentInstance.toggle({ id: "tobais", AddClass: "invisible", AddedClass: "visible" })
-    expect(fixture.componentInstance.get()).toHaveSize(0)
+    fixture.componentInstance.toggle(testKeyword1)
+    expect(fixture.componentInstance.onKeywordsChange.emit).toHaveBeenCalledOnceWith([ testKeyword1 ])
+
+    fixture.componentInstance.toggle(testKeyword1)
+    expect(fixture.componentInstance.onKeywordsChange.emit).toHaveBeenCalledWith([])
   })
 
 });

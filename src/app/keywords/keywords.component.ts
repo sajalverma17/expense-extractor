@@ -23,7 +23,6 @@ export class KeywordsComponent {
     {id: "kiwi", keyword:"Kiwi", AddClass: 'visible', AddedClass: 'invisible' },
     {id: "freshfitness", keyword: "Fresh Fitness", AddClass: 'visible', AddedClass: 'invisible' },
     {id: "netflix", keyword:"Netflix", AddClass: 'visible', AddedClass: 'invisible' },
-    {id: "lingu", keyword:"Lingu", AddClass: 'visible', AddedClass: 'invisible' },
   ]
 
   toggle(keywordWithClass: KeywordWithClass) {
