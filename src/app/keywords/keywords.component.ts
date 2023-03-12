@@ -23,23 +23,23 @@ export class KeywordsComponent {
     {id: "freshfitness", keyword: "Fresh Fitness", AddClass: 'visible', AddedClass: 'invisible' },
     {id: "netflix", keyword:"Netflix", AddClass: 'visible', AddedClass: 'invisible' },
     {id: "lingu", keyword:"Lingu", AddClass: 'visible', AddedClass: 'invisible' },
-  ];
+  ]
 
   toggle(keywordWithClass: KeywordWithClass) {
 
-    if (keywordWithClass.AddClass == 'visible') {
-      this.add(keywordWithClass as Keyword);
-      this.displayAdded(keywordWithClass);
+    if (keywordWithClass.AddClass === 'visible') {
+      this.add(keywordWithClass as Keyword)
+      this.displayAdded(keywordWithClass)
       return
     }
 
-    this.remove(keywordWithClass as Keyword);
-    this.displayAdd(keywordWithClass);
+    this.remove(keywordWithClass.id)
+    this.displayAdd(keywordWithClass)
     return
   }
 
   get(): Keyword[] {
-    return []
+    return this.selectedKeywords
   }
 
   private displayAdded(keywordWithClass: KeywordWithClass) {
@@ -56,13 +56,13 @@ export class KeywordsComponent {
     this.selectedKeywords.push(keyword)
   }
 
-  private remove(keyword: Keyword) {
+  private remove(idToRemove: string) {
     const indexToRemove = this.selectedKeywords.findIndex(k => {
-      return k.id === keyword.id
+      return k.id === idToRemove
     })
 
     if(indexToRemove !== -1) {
-      this.selectedKeywords = this.selectedKeywords.splice(indexToRemove, 1)
+      this.selectedKeywords.splice(indexToRemove, 1)
     }
   }
 }
