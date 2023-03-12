@@ -20,13 +20,13 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'expense-extractor'`, () => {
+  it(`should have title 'expense extractor'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('expense-extractor');
+    expect(app.title).toEqual('expense extractor');
   });
 
-  it('should render title', () => {
+  it(`should render title 'expense extractor'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
