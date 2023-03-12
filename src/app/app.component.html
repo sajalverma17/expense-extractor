@@ -36,11 +36,11 @@
     <span>{{ name }} is running!</span>
   </div>
 
-  <extract></extract>
+  <extract (onExtractClick)="extract()"></extract>
 
-  <keywords></keywords>
+  <keywords (onKeywordsChange)="updateKeywords($event)"></keywords>
 
-  <result></result>
+  <result [result]="resultText"></result>
 
   <!-- Not in use -->
   <footer></footer>

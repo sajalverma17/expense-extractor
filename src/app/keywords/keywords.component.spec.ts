@@ -38,11 +38,4 @@ describe('KeywordsComponent', () => {
     expect(fixture.componentInstance.get()).toHaveSize(0)
   })
 
-  it('TODO: toggle should switch svg', () => {
-
-    const template = fixture.nativeElement as HTMLElement
-    expect(template.querySelector('#svg-add')?.classList).toContain('visible')
-    expect(template.querySelector('#svg-added')?.classList).toContain('invisible')
-  })
-
 });

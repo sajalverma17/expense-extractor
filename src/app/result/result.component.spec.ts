@@ -18,11 +18,6 @@ describe('ResultComponent', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should render default result', () => {
-    const template = fixture.nativeElement as HTMLElement
-    expect(template.querySelector('.terminal pre')?.textContent).toBe('Click the Extract button to get your expenses')
-  })
-
   it('should render given result', () => {
     fixture.componentInstance.result = 'some text'
     fixture.detectChanges();

@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { KeywordsComponent } from './keywords/keywords.component';
 import { ResultComponent } from './result/result.component';
+import { ExtractComponent } from './extract/extract.component';
 
 describe('AppComponent', () => {
   let fixture : ComponentFixture<AppComponent>
@@ -13,6 +14,7 @@ describe('AppComponent', () => {
         RouterTestingModule
       ],
       declarations: [
+        ExtractComponent,
         ResultComponent,
         KeywordsComponent,
         AppComponent

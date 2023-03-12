@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'extract',
@@ -6,4 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./extract.component.scss']
 })
 export class ExtractComponent {
+  @Output() onExtractClick = new EventEmitter()
+
+  extractClicked() {
+    this.onExtractClick.emit()
+  }
 }

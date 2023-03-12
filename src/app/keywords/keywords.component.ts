@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
-interface Keyword {
+export interface Keyword {
   id: string
 }
 
@@ -17,6 +17,7 @@ interface KeywordWithClass extends Keyword {
 export class KeywordsComponent {
 
   private selectedKeywords: Keyword[] = []
+  @Output() onKeywordsChange: EventEmitter<Keyword[]> = new EventEmitter()
 
   keywords = [
     {id: "kiwi", keyword:"Kiwi", AddClass: 'visible', AddedClass: 'invisible' },
@@ -30,11 +31,13 @@ export class KeywordsComponent {
     if (keywordWithClass.AddClass === 'visible') {
       this.add(keywordWithClass as Keyword)
       this.displayAdded(keywordWithClass)
+      this.onKeywordsChange.emit(this.selectedKeywords)
       return
     }
 
     this.remove(keywordWithClass.id)
     this.displayAdd(keywordWithClass)
+    this.onKeywordsChange.emit(this.selectedKeywords)
     return
   }
 

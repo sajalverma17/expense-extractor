@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'result',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./result.component.scss']
 })
 export class ResultComponent {
-  result: String = 'Click the Extract button to get your expenses'
+  @Input() result: String = ''
 }
