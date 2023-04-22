@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Keyword } from './keywords/keywords.component';
 import { getExpenses } from './expense/extractor';
+import { APP_NAME } from './app.constants';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,7 @@ import { getExpenses } from './expense/extractor';
 })
 export class AppComponent {
 
-  /* TODO: Move to a constants file */
-  private appName = 'expense extractor'
+  private appName = APP_NAME
   private extractionOngoingText = 'Extracting total expenses...'
   private defaultResultText = 'Click the Extract button to get your expenses'
 

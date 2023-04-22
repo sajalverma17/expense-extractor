@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { KEYWORDS } from '../app.constants';
 
 export interface Keyword {
   id: string
@@ -19,11 +20,7 @@ export class KeywordsComponent {
   private selectedKeywords: Keyword[] = []
   @Output() onKeywordsChange: EventEmitter<Keyword[]> = new EventEmitter()
 
-  keywords = [
-    {id: "kiwi", keyword:"Kiwi", AddClass: 'visible', AddedClass: 'invisible' },
-    {id: "freshfitness", keyword: "Fresh Fitness", AddClass: 'visible', AddedClass: 'invisible' },
-    {id: "netflix", keyword:"Netflix", AddClass: 'visible', AddedClass: 'invisible' },
-  ]
+  keywords = KEYWORDS.map(k => { return { id: k, AddClass: 'visible', AddedClass: 'invisible' } })
 
   toggle(keywordWithClass: KeywordWithClass) {
 
