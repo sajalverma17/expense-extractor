@@ -69,7 +69,7 @@ def get_transactions(http_session: requests.Session, customerid: str, accountId:
         raise RuntimeError("{} {}".format(response["errorType"], response["errorMessage"]))
 
 def filter_transactions_on_token(transactions: list, token: str):
-    filteredTransactions = [transaction for transaction in transactions if token in transaction["text"]]
+    filteredTransactions = [transaction for transaction in transactions if token.casefold() in transaction["text"].casefold()]
     for transaction in filteredTransactions:
         print(transaction["text"] + " | " + transaction["accountingDate"])
     return filteredTransactions
@@ -95,7 +95,7 @@ def main():
 
     transactions = get_transactions(http_session, api_settings.CUSTOMERID, accountId, '2023-04-01', '2023-04-21')
 
-    filteredTransactions = filter_transactions_on_token(transactions, "LINGU")
+    filteredTransactions = filter_transactions_on_token(transactions, "kiwi")
 
     totalAmount = sum_of_transactions(filteredTransactions)
     pprint.pprint(totalAmount)
