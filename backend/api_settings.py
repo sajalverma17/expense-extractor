@@ -14,12 +14,10 @@ be loaded automatically. If not, you can use
 2. Uncomment the two lines below to load the environment variables in `.env`.
 """
 
-# from dotenv import load_dotenv, find_dotenv
-# load_dotenv(find_dotenv())
-
-# This is social security number.
-CUSTOMERID = environ['CUSTOMERID']
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
 
 # Get CLIENTID and SECRET from https://secure.sbanken.no/Personal/ApiBeta/Info
+CUSTOMERID = environ['CUSTOMERID']
 CLIENTID = environ['CLIENTID']
 SECRET = environ['SECRET']
