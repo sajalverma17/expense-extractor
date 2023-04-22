@@ -1,6 +1,6 @@
 # Setup
 
-Built with Node version 18, uses with Angular 15.
+Built with Node version 18, uses Angular 15.
 
 ## Development server
 
