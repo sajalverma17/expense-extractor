@@ -1,6 +1,6 @@
-# ExpenseExtractor
+# Setup
 
-Expense extractor pulls a sum of expenses from my bank account based on keywords. Built with Angular15.
+Built with Node version 18, uses with Angular 15.
 
 ## Development server
 
