@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Keyword } from './keywords/keywords.component';
 
 @Component({
@@ -30,7 +30,7 @@ export class AppComponent {
 
     const keysString = this.keywords.map(k => k.id).join('&').trim()
     this.resultText = this.extractionOngoingText
-    alert(`Done extracting for keywords ${keysString}. Start Date: ${this.startDate} End Date: ${this.endDate}`)
+    alert(`Extracting for keywords ${keysString}. Start Date: ${this.startDate} End Date: ${this.endDate}`)
     this.resultText = this.extractionFinishedText + keysString
   }
 

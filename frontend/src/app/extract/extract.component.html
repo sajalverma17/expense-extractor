@@ -1,8 +1,8 @@
 <div class="section">
   <div class="card-container">
 
-    <input type="date" class="card no-hover-card" name="startDate" [ngModel]="startDate | date:'yyyy-MM-dd'" (ngModelChange)="startDateChanged()" />
-    <input type="date" class="card no-hover-card" name="endDate" [ngModel]="endDate | date:'yyyy-MM-dd'" (ngModelChange)="endDateChanged()" />
+    <input type="date" class="card no-hover-card" name="startDate" [ngModel]="startDate | date:'yyyy-MM-dd'" (ngModelChange)="startDate = $event" />
+    <input type="date" class="card no-hover-card" name="endDate" [ngModel]="endDate | date:'yyyy-MM-dd'" (ngModelChange)="endDate = $event" />
 
     <button class="card" target="_blank" rel="noopener" (click)="extractClicked()">
       <span>Extract</span>

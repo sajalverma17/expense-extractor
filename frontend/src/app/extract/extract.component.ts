@@ -15,13 +15,8 @@ export class ExtractComponent {
 
   extractClicked() {
     this.onExtractClick.emit()
-  }
-
-  startDateChanged() {
     this.onStartDateChange.emit(this.startDate)
-  }
-
-  endDateChanged() {
     this.onEndDateChange.emit(this.endDate)
   }
+
 }
