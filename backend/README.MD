@@ -20,6 +20,6 @@ python3 extractor.py [startDate] [endDate] [keyword]
 * From the api (requires uvicorn apt package installed):
 
 ```
-uvicorn api:app --uvicorn
+uvicorn api:app --reload
 ```
 
