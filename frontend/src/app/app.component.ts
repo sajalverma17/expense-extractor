@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Keyword } from './keywords/keywords.component';
+import { getExpenses } from './expense/extractor';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,6 @@ export class AppComponent {
   /* TODO: Move to a constants file */
   private appName = 'expense extractor'
   private extractionOngoingText = 'Extracting total expenses...'
-  private extractionFinishedText = 'Your spent about three fiddy on '
   private defaultResultText = 'Click the Extract button to get your expenses'
 
   private keywords: Keyword[] = []
@@ -21,17 +21,26 @@ export class AppComponent {
   name = this.appName
   resultText = this.defaultResultText
 
-  extract() {
+  async extract() : Promise<void> {
 
     if(this.keywords.length == 0) {
       alert('Please choose atleast one keyword to extract expenses on.')
       return
     }
 
+    if(this.startDate > this.endDate) {
+      alert('End date must be later than start date.')
+      return
+    }
+
     const keysString = this.keywords.map(k => k.id).join('&').trim()
-    this.resultText = this.extractionOngoingText
     alert(`Extracting for keywords ${keysString}. Start Date: ${this.startDate} End Date: ${this.endDate}`)
-    this.resultText = this.extractionFinishedText + keysString
+
+    this.resultText = this.extractionOngoingText
+    const expense = await getExpenses(this.keywords[0].id, this.startDate, this.endDate)
+    this.resultText = `You spent ${expense} on ${this.keywords[0].id}`
+
+    return Promise.resolve()
   }
 
   setStartDate(date: Date) {
