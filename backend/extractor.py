@@ -1,3 +1,4 @@
+import json
 from oauthlib.oauth2 import BackendApplicationClient
 import requests
 from requests_oauthlib import OAuth2Session
@@ -55,16 +56,29 @@ def get_accountId(http_session: requests.Session, customerid) -> str:
         raise RuntimeError("{} {}".format(response["errorType"], response["errorMessage"]))
 
 
-def get_transactions(http_session: requests.Session, customerid: str, accountId: str, startDate: str):
+def get_transactions(http_session: requests.Session, customerid: str, accountId: str, startDate: str, endDate: str):
     response_object = http_session.get(
-        f"{api_url}/api/v1/Transactions/{accountId}?startDate={startDate}",
-        headers={'customerId': customerid,}
+        f"{api_url}/api/v1/Transactions/{accountId}/?startDate={startDate}&endDate={endDate}",
+        headers={'customerId': customerid}
     )
     response = response_object.json()
     if not response["isError"]:
-        return response["items"]
+        transactions = response["items"]
+        return transactions
     else:
         raise RuntimeError("{} {}".format(response["errorType"], response["errorMessage"]))
+
+def filter_transactions_on_token(transactions: list, token: str):
+    filteredTransactions = [transaction for transaction in transactions if token in transaction["text"]]
+    for transaction in filteredTransactions:
+        print(transaction["text"] + " | " + transaction["accountingDate"])
+    return filteredTransactions
+
+def sum_of_transactions(transactions: list):
+    amounts = [int(transaction["amount"]) for transaction in transactions]
+    return sum(amounts)
+
+
 
 def main():
     # enable_debug_logging()
@@ -79,8 +93,12 @@ def main():
     accountId = get_accountId(http_session, api_settings.CUSTOMERID)
     pprint.pprint(accountId)
 
-    transactions = get_transactions(http_session, api_settings.CUSTOMERID, accountId, '2023-03-01')
-    pprint.pprint(transactions)
+    transactions = get_transactions(http_session, api_settings.CUSTOMERID, accountId, '2023-04-01', '2023-04-21')
+
+    filteredTransactions = filter_transactions_on_token(transactions, "LINGU")
+
+    totalAmount = sum_of_transactions(filteredTransactions)
+    pprint.pprint(totalAmount)
 
 
 if __name__ == "__main__":
