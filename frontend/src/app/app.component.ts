@@ -15,6 +15,8 @@ export class AppComponent {
   private defaultResultText = 'Click the Extract button to get your expenses'
 
   private keywords: Keyword[] = []
+  private startDate: Date = new Date("2000-01-01")
+  private endDate: Date = new Date("2000-01-01")
 
   name = this.appName
   resultText = this.defaultResultText
@@ -26,14 +28,21 @@ export class AppComponent {
       return
     }
 
-    const keysString = this.keywords.map(k => k.id).join(', ').trim()
+    const keysString = this.keywords.map(k => k.id).join('&').trim()
     this.resultText = this.extractionOngoingText
-    alert(`Done extracting for keywords ${keysString}`)
+    alert(`Done extracting for keywords ${keysString}. Start Date: ${this.startDate} End Date: ${this.endDate}`)
     this.resultText = this.extractionFinishedText + keysString
-
   }
 
-  updateKeywords(keywords: Keyword[]) {
+  setStartDate(date: Date) {
+    this.startDate = date
+  }
+
+  setEndDate(date: Date) {
+    this.endDate = date
+  }
+
+  setKeywords(keywords: Keyword[]) {
     this.keywords = keywords
   }
 }

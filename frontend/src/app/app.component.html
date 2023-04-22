@@ -36,9 +36,9 @@
     <span>{{ name }} is running!</span>
   </div>
 
-  <extract (onExtractClick)="extract()"></extract>
+  <extract (onExtractClick)="extract()" (onStartDateChange)="setStartDate($event)" (onEndDateChange)="setEndDate($event)"></extract>
 
-  <keywords (onKeywordsChange)="updateKeywords($event)"></keywords>
+  <keywords (onKeywordsChange)="setKeywords($event)"></keywords>
 
   <result [result]="resultText"></result>
 
