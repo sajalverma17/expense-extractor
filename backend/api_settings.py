@@ -21,3 +21,6 @@ load_dotenv(find_dotenv())
 CUSTOMERID = environ['CUSTOMERID']
 CLIENTID = environ['CLIENTID']
 SECRET = environ['SECRET']
+
+# Allowed request origins
+FRONTEND_URI = "http://localhost:4200/"
