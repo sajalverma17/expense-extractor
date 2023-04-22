@@ -1,4 +1,3 @@
-import json
 from oauthlib.oauth2 import BackendApplicationClient
 import requests
 from requests_oauthlib import OAuth2Session
@@ -78,12 +77,21 @@ def sum_of_transactions(transactions: list):
     amounts = [int(transaction["amount"]) for transaction in transactions]
     return sum(amounts)
 
+def main_cli():
+    import sys
+
+    startDate = sys.argv[1]
+    endDate = sys.argv[2]
+    keyword = sys.argv[3]
+
+    extract(startDate, endDate, keyword)
 
 
-def main():
-    # enable_debug_logging()
+def extract(keyword: str, startDate: str, endDate: str):
+
     import api_settings
     import pprint
+    # enable_debug_logging()
 
     http_session = create_authenticated_http_session(api_settings.CLIENTID, api_settings.SECRET)
 
@@ -93,13 +101,14 @@ def main():
     accountId = get_accountId(http_session, api_settings.CUSTOMERID)
     pprint.pprint(accountId)
 
-    transactions = get_transactions(http_session, api_settings.CUSTOMERID, accountId, '2023-04-01', '2023-04-21')
+    transactions = get_transactions(http_session, api_settings.CUSTOMERID, accountId, startDate, endDate)
 
-    filteredTransactions = filter_transactions_on_keyword(transactions, "kiwi")
+    filteredTransactions = filter_transactions_on_keyword(transactions, keyword)
 
     totalAmount = sum_of_transactions(filteredTransactions)
     pprint.pprint(totalAmount)
 
+    return totalAmount
 
 if __name__ == "__main__":
-    main()
+    main_cli()
