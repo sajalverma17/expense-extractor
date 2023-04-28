@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  backend:
+    image: sajal/expense-extractor-backend
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+    ports:
+      - "8000:80"
