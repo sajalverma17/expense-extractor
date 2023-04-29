@@ -7,3 +7,10 @@ services:
       dockerfile: ./Dockerfile
     ports:
       - "8000:80"
+  frontend:
+    image: sajal/expense-extractor-frontend
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile
+    ports:
+      - "4200:4200"
