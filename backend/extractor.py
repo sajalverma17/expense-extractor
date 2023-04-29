@@ -96,17 +96,13 @@ def extract(keyword: str, startDate: str, endDate: str):
     http_session = create_authenticated_http_session(api_settings.CLIENTID, api_settings.SECRET)
 
     customer_info = get_customer_information(http_session, api_settings.CUSTOMERID)
-    pprint.pprint(customer_info)
-
     accountId = get_accountId(http_session, api_settings.CUSTOMERID)
-    pprint.pprint(accountId)
+    pprint.pprint(f'Extracting expense from account {accountId} for {customer_info["customerId"]}')
 
     transactions = get_transactions(http_session, api_settings.CUSTOMERID, accountId, startDate, endDate)
-
     filteredTransactions = filter_transactions_on_keyword(transactions, keyword)
-
     totalAmount = sum_of_transactions(filteredTransactions)
-    pprint.pprint(totalAmount)
+    pprint.pprint(f'Amount spent on {keyword} between {startDate} and {endDate}: {totalAmount}')
 
     return totalAmount
 
