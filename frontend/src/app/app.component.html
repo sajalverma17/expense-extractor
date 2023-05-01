@@ -38,7 +38,7 @@
 
   <extract (onExtractClick)="extract()" (onStartDateChange)="setStartDate($event)" (onEndDateChange)="setEndDate($event)"></extract>
 
-  <keywords (onKeywordsChange)="setKeywords($event)"></keywords>
+  <keywords (onKeywordsChange)="setKeywords($event)" (onCustomKeywordChange)="setCustomKeyword($event)" ></keywords>
 
   <result [result]="resultText"></result>
 

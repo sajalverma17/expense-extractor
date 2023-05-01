@@ -18,7 +18,9 @@ interface KeywordWithClass extends Keyword {
 export class KeywordsComponent {
 
   private selectedKeywords: Keyword[] = []
+  protected customKeyword?: Keyword
   @Output() onKeywordsChange: EventEmitter<Keyword[]> = new EventEmitter()
+  @Output() onCustomKeywordChange : EventEmitter<Keyword> = new EventEmitter()
 
   keywords = KEYWORDS.map(k => { return { id: k, AddClass: 'visible', AddedClass: 'invisible' } })
 
@@ -35,6 +37,10 @@ export class KeywordsComponent {
     this.displayAdd(keywordWithClass)
     this.onKeywordsChange.emit(this.selectedKeywords)
     return
+  }
+
+  customKeywordChange(customKeyword: string) {
+    this.onCustomKeywordChange.emit({ id: customKeyword})
   }
 
   get(): Keyword[] {

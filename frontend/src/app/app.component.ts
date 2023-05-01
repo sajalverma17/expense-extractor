@@ -15,6 +15,7 @@ export class AppComponent {
   private defaultResultText = 'Click the Extract button to get your expenses'
 
   private keywords: Keyword[] = []
+  private customKeyword: Keyword = { id: "" }
   private startDate: Date = new Date("2000-01-01")
   private endDate: Date = new Date("2000-01-01")
 
@@ -23,8 +24,8 @@ export class AppComponent {
 
   async extract() : Promise<void> {
 
-    if(this.keywords.length == 0) {
-      alert('Please choose atleast one keyword to extract expenses on.')
+    if(this.keywords.length == 0 && this.customKeyword.id == "" ) {
+      alert('Please choose atleast one keyword or custom keyword to extract expenses on.')
       return
     }
 
@@ -33,12 +34,10 @@ export class AppComponent {
       return
     }
 
-    const keysString = this.keywords.map(k => k.id).join('&').trim()
-    alert(`Extracting for keywords ${keysString}. Start Date: ${this.startDate} End Date: ${this.endDate}`)
-
     this.resultText = this.extractionOngoingText
-    const expense = await getExpenses(this.keywords[0].id, this.startDate, this.endDate)
-    this.resultText = `You spent ${expense} on ${this.keywords[0].id}`
+    const keywordToExtract = this.customKeyword.id != "" ? this.customKeyword.id : this.keywords[0].id
+    const expense = await getExpenses(keywordToExtract, this.startDate, this.endDate)
+    this.resultText = `You spent ${expense} on ${keywordToExtract}`
 
     return Promise.resolve()
   }
@@ -53,5 +52,9 @@ export class AppComponent {
 
   setKeywords(keywords: Keyword[]) {
     this.keywords = keywords
+  }
+
+  setCustomKeyword(customKeyword: Keyword) {
+    this.customKeyword = customKeyword
   }
 }

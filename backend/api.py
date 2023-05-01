@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from extractor import extract as doExtract
-import api_settings
 
 app = FastAPI()
 
