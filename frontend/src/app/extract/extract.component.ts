@@ -13,6 +13,11 @@ export class ExtractComponent {
   startDate: Date = new Date()
   endDate: Date = new Date()
 
+  constructor() {
+    this.startDate.setMonth(this.startDate.getMonth() - 1)
+    this.endDate.setDate(this.endDate.getDate() - 1)
+  }
+
   extractClicked() {
     this.onStartDateChange.emit(this.startDate)
     this.onEndDateChange.emit(this.endDate)
