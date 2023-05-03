@@ -34,6 +34,11 @@ export class AppComponent {
       return
     }
 
+    if(this.endDate.getDate() >= new Date().getDate()) {
+      alert('End date can not be today or in future.')
+      return
+    }
+
     this.resultText = this.extractionOngoingText
     const keywordToExtract = this.customKeyword.id != "" ? this.customKeyword.id : this.keywords[0].id
     const expense = await getExpenses(keywordToExtract, this.startDate, this.endDate)

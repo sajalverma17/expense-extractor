@@ -18,6 +18,14 @@ export class ExtractComponent {
     this.endDate.setDate(this.endDate.getDate() - 1)
   }
 
+  startDateChanged(date: string) {
+    this.startDate = new Date(date);
+  }
+
+  endDateChanged(date: string) {
+    this.endDate = new Date(date);
+  }
+
   extractClicked() {
     this.onStartDateChange.emit(this.startDate)
     this.onEndDateChange.emit(this.endDate)
