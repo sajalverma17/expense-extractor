@@ -12,5 +12,4 @@ RUN npm run build --prod
 FROM nginx:latest AS nginx
 COPY --from=node /app/dist/expense-extractor /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 80
 
