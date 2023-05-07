@@ -13,11 +13,12 @@ services:
       context: ./frontend
       dockerfile: ./Dockerfile
     ports:
-      - "8001:80"
+      - "8001:8001"
   reverse-proxy:
-    image: sajal/expense-extractor-reverse-proxy
-    build:
-      context: ./deploy
-      dockerfile: ./Dockerfile
+    image: nginx:latest
+    depends_on:
+      - frontend
+    volumes:
+      - ./reverse-proxy.conf:/etc/nginx/conf.d/default.conf
     ports:
-      - "8002:80"
+      - 8002:8002
