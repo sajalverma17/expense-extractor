@@ -1,10 +1,8 @@
-import { API_SERVER_URI } from "../app.constants"
-
 export async function getExpenses(keyword: string, startDate: Date, endDate: Date) : Promise<string> {
 
     const start = formatDate(startDate)
     const end = formatDate(endDate)
-    const resp = await fetch(`${API_SERVER_URI}/extract/${keyword}?startDate=${start}&endDate=${end}`)
+    const resp = await fetch(`/extract/${keyword}?startDate=${start}&endDate=${end}`)
     if (!resp.ok) {
         throw Error(`Error getting expense from the api. Status: ${resp.status} Message: ${resp.text}`)
     }
