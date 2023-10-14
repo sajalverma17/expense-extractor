@@ -34,7 +34,7 @@ export class AppComponent {
       return
     }
 
-    if(this.endDate.getDate() >= new Date().getDate()) {
+    if(this.endDate >= new Date()) {
       alert('End date can not be today or in future.')
       return
     }
