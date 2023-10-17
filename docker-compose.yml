@@ -11,14 +11,14 @@ services:
   frontend:
     image: sajal/expense-extractor-frontend
     build:
-      context: ./frontend
-      dockerfile: ./Dockerfile
+      context: ./src/frontend
+      dockerfile: Dockerfile
     ports:
       - 8001:80
   backend:
     image: sajal/expense-extractor-backend
     build:
-      context: ./backend
-      dockerfile: ./Dockerfile
+      context: ./src/backend
+      dockerfile: Dockerfile
     ports:
       - 8002:80
